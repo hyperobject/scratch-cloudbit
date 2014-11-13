@@ -25,7 +25,7 @@
     // Functions for block with type 'w' will get a callback function as the 
     // final argument. This should be called to indicate that the block can
     // stop waiting.
-    ext.output = function(num, dur, callback) {
+    ext.output_dur = function(num, dur, callback) {
         $.ajax({
       url:"https://api-http.littlebitscloud.cc/devices/" + id + "/output",
       type:"POST",
@@ -41,10 +41,28 @@
         });
     };
 
+    /*
+    This broke it. :( 
+
+    TODO: Fix
+
+    ext.output = function(num) {
+        $.ajax({
+      url:"https://api-http.littlebitscloud.cc/devices/" + id + "/output",
+      type:"POST",
+      headers: { 
+        "Authorization" : "Bearer" + token,
+        "Accept" : "application/vnd.littlebits.v2+json"
+      },
+      data:{percent: num, duration_ms: "-1")},
+      dataType:"json"
+    });
+    };*/
     // Block and block menu descriptions
     var descriptor = {
         blocks: [
-            ['w', 'output %n percent power for %n seconds', 'output', '100', '5'],
+            ['w', 'output %n percent power for %n seconds', 'output_dur', '100', '5']
+            //[' ', 'output %n percent power', 'output', '100']
         ]
     };
 
